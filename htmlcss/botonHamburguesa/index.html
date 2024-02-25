@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boton Hamburguesa</title>
+    <style>
+        .toggle{
+            cursor: pointer;
+            display: inline-block;
+        }
+        .toggle span{
+            cursor: pointer;
+            position: relative;
+            width: 36px;
+            height: 5px;
+            background-color: #2bd7e3;
+            display: block;
+            margin-bottom: 8px;
+            transition: .5s;
+        }
+        .toggle span:nth-child(1){
+            transform-origin: left;
+        }
+        .toggle span:nth-child(2){
+            transform-origin: center;
+        }
+        .toggle span:nth-child(3){
+            transform-origin: left;
+        }
+        .toggle.active span:nth-child(1){
+            transform: rotate(45deg);
+            left: 2px;
+        }
+        .toggle.active span:nth-child(2){
+            transform: rotate(315deg);
+            right: 3px;
+        }
+        .toggle.active span:nth-child(3){
+            transform: scaleX(0);
+        }
+    </style>
+</head>
+
+<body>
+
+    <a class="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+
+    <script>
+        const $button = document.querySelector(".toggle");
+        const $toggle = document.querySelector(".toggle, .toggle > *");
+        $toggle.addEventListener("click",(e)=>{
+            console.log($toggle);
+            console.log($button);
+            $button.classList.toggle("active")
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="background">
+      <form class="form">
+        <h1 class="form__title">Login</h1>
+        <div class="form__credentials">
+          <label>
+            <img src="./assets/icons/user.svg" alt="👤" width="20px" height="20px">
+            <input type="text" placeholder="Username" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">            
+            <input type="password" placeholder="Password" />
+          </label>
+        </div>
+        <div class="form__actions">
+          <div>
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#" class="action__forgot"> Forgot password? </a>
+          </div>
+          <button type="submit">
+            Login
+          </button>
+        </div>
+        <footer>
+          Don`t have an account? <a href="#">Register</a>
+        </footer>
+      </form>
+    </div>
+  </body>
+</html>

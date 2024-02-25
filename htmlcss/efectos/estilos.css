@@ -1,0 +1,921 @@
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  font-size: 16px;  
+  overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.box{
+	background-color: #fff;
+	border: 7px solid #000000;
+	width: 250px;
+	height: 250px;
+	margin: 20px auto;	
+}
+
+.card{
+	width: 450px;
+	height: 250px;
+	margin: 20px auto;
+	border: thick solid #007A70;
+}
+.card img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 0 50%;
+}
+
+/*PROBANDO LAS TRANSICIONES*/
+
+/* 
+Transiciones
+  transition-property
+  transition-duration
+  transition-timing-function: none linear ease ease-in ease-out ease-in-out steps
+  transition-delay
+  transition: property duration timing-funciton delay
+
+  https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties
+*/
+.transitions .box{	
+	background-color: #0084D0;
+	border: 7px solid #00305D;
+	transition-property: background-color;
+	transition-duration: 500ms;
+	transition-timing-function: ease;
+	transition-delay: .5s;
+
+	/*si agregamos una segunda transicion entonces 
+	la de arriba no sirve*/
+	transition: border-color 2s linear 1s;
+	/*con all hariamos referencia a todas las props
+	pero no se la sugiere utilizar porque es una mala
+	practica haciendo referencia a todas las props*/
+	transition: all 2s ease-in-out 250ms;
+	/*para agregar mas de una transition lo hacemos con ,*/
+	transition: background-color 2s ease-in-out 250ms,
+    border-color 2s ease-in-out 250ms, border-radius 2s ease-in-out 250ms;
+}
+
+.transitions .box:hover{
+	background-color: #FF4E4E;
+	border-color: cyan;
+	border-radius: 2rem;
+}
+
+.transitions .card{
+	transition: opacity 1s steps(5),
+	filter 2s ease-in 2s,
+	box-shadow 1.5s linear 2s;
+}
+.transitions .card img{
+	transition: object-position 2s ease-in-out 3s;
+}
+.transitions .card img:hover{
+	object-position: 100% 200%;
+}
+
+.transitions .card:hover{
+	opacity: 0.5;
+	filter: blur(0.15rem);
+	box-shadow: 1rem 1rem 2rem 0.5rem #000;
+}
+
+
+/*PARA LAS FLIP-CARDS*/
+.flip-card-1,
+.flip-card-2{
+	border: thick solid black;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 3rem;
+	width: 600px;
+	height: 400px;
+
+	position: relative;
+	cursor: pointer;
+	transition: transform 1.5s ease-in-out;
+
+	perspective: 10rem;
+	/*determina como se comportaran los hijos
+	en el plano 3d*/
+	transform-style: flat; /*default*/
+	transform-style: preserve-3d; /*los hijos tendran su propia perspectiva independiente*/
+}
+
+.flip-face{
+	width: 100%;
+	height: 100%;
+
+	position: absolute;
+	/*hay una propiedad que detemrina cudnao tenemos un elemento
+	de dos caras pues determina como se veran esas
+	y necesita perspectiva osea transform 3d*/
+	backface-visibility: visible; /*default*/
+	backface-visibility: hidden; /*las dos caras se verian ocultas pero como una tiene los grados en 0 esa se mostrara*/	
+}
+
+.flip-card-1 img,
+.flip-card-2 img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 0% 50%;
+}
+
+.flip-front{
+	transform: rotateY(0deg);
+}
+.flip-back{
+	transform: rotateY(180deg);
+}
+
+.flip-card-1:hover{
+	transform: rotateY(180deg);
+}
+
+
+
+/*para una nueva flipcard*/
+.flip-card-2{
+	transform-origin: center right;
+}
+
+.flip-card-2:hover{
+	transform: translateX(-100%) rotateY(180deg);
+}
+
+
+/*PARA LAS ANIMACIONES*/
+@keyframes myFirstAnimation {
+	from {
+		opacity: 0;
+		transform: translateX(0);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(70%);
+	}
+}
+
+.animations .card{
+	/* animation: name duration 
+	timing-function 
+	delay 
+	iteration-count 
+	direction 
+	fill-mode 
+	play-state; */
+
+	animation-name: myFirstAnimation;
+	animation-duration: 3s;
+	/* https://cubic-bezier.com/ */
+	animation-timing-function: ease;
+	animation-timing-function: ease-in-out;
+	animation-timing-function: cubic-bezier(0.33, 0.92, 0.92, 0.36);
+
+	animation-delay: 500ms;
+	animation-delay: 0ms;
+
+	animation-iteration-count: 3;
+	animation-iteration-count: infinite;
+
+	animation-iteration-count: 1;
+	animation-direction: reverse;
+	animation-direction: alternate;
+	animation-direction: alternate-reverse;
+	animation-direction: normal;
+	animation-fill-mode: none;
+	/* Al final de la animación se queda con los estilos finales de la animación */
+	animation-fill-mode: forwards;
+	/* Al inicio de la animación se queda con los estilos iniciales de la animación */
+	animation-fill-mode: backwards;
+	/* both aplica al mismo tiempo forwards y backwards */
+	animation-fill-mode: both;
+	animation-play-state: paused;
+	animation-play-state: running;
+
+	animation: myFirstAnimation 1s;
+  	animation: myFirstAnimation 1.5s ease 250ms 5 alternate both running;
+
+}
+
+
+
+/*EJEMPLOS*/
+.motion-examples{
+	text-align: center;
+}
+
+
+/*FADE IN - FADE OUT*/
+h3{
+	font-size: 2rem;
+	text-align: center;
+}
+.fade-in,.fade-out{
+	font-size: 4rem;
+	margin: 0px 30px;
+	text-align: center;
+}
+
+@keyframes fadeIn{
+	0%{
+		opacity: 0;
+	}
+	100%{
+		opacity: 1;
+	}
+}
+
+.fade-in{
+	animation: fadeIn 2s linear 1s infinite alternate both;
+}
+
+@keyframes fadeOut{
+	0%{
+		opacity: 1;
+	}
+	100%{
+		opacity: 0;
+	}
+}
+
+.fade-out{
+	animation: fadeOut 2s linear 1s infinite alternate both;
+}
+
+/*SHAKE - SACUDIR*/
+.shake{
+	font-size: 4rem;
+	transition: transform;
+	cursor: pointer;
+	display: inline-block;
+}
+
+@keyframes shake{
+	0%{
+		transform: translateX(0px);
+	}
+	10%,30%,50%,70%,90%{
+		transform: translateX(3px);
+	}
+	20%,40%,60%,80%{
+		transform: translateX(-3px);
+	}
+	100%{
+		transform: translateX(0px);
+	}
+}
+
+.shake:hover{
+	animation:shake 1s linear both;
+}
+
+
+/*PULSACIONES*/
+.pulse{
+	font-size: 4rem;
+	color: red;
+	animation:pulse 1.5s linear infinite;
+}
+
+@keyframes pulse{
+	0%{
+		transform: scale(1.1);
+	}
+	50%{
+		transform: scale(.8);
+	}
+	100%{
+		transform: scale(1);
+	}
+}
+
+
+/*CORAZON CON CSS**/
+.heart{
+	width: 200px;
+	height: 200px;	
+	margin: 0 auto;
+	position: relative;
+	animation:pulse 1.5s linear infinite;
+}
+
+.heart::before{
+	content: "";
+	position: absolute;
+	background-color: red;
+	left: 0;
+	width: 100px;
+	height: 60px;
+	transform: rotate(45deg);
+	transform-origin: 0 170%;
+	border-radius: 100px 0px 0px 100px;
+}
+
+.heart::after{
+	content: "";
+	position: absolute;
+	left: 100px;
+	background-color: red;	
+	width: 100px;
+	height: 60px;
+	transform: rotate(-45deg);
+	transform-origin: 100% 170%;
+	border-radius: 0px 100px 100px 0px;
+}
+
+@keyframes heartColor {
+	50%{
+		background-color: #DE0000;
+	}
+}
+
+.heart::before,
+.heart::after{
+	animation:heartColor 1s infinite;
+}
+
+
+/*SPINNER ANIMADO*/
+
+.spinner{
+	/*background-color: #36B6FF;*/
+	width: 80px;
+	height: 80px;
+	margin: 0px auto;
+	border: 10px solid #00000020;
+	border-top-color: #FF3E3E;
+	border-radius: 50%;
+}
+
+@keyframes spinner {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform:  rotate(360deg);
+	}
+}
+
+.spinner{
+	animation:spinner 1s ease-out infinite;
+}
+
+
+/*PARA LAS BOTONES*/
+.btn{
+	border: 0;
+	padding: 1rem 2.5rem;
+	/*background-color: #4170C7;
+	color: #ffffff;*/
+	margin: .5rem;
+	position: relative;
+	font-size: 15px;
+	font-weight: bold;
+	border-radius: 3rem;
+	overflow: hidden;
+}
+
+.anim-boton::before{
+	content: "";
+	position: absolute;
+	bottom: 0;	
+	width: 0;
+	height: .3rem;
+	color: red;
+	background-color: red;
+	transition:width .5s ease,left 0.5s ease;
+}
+
+.to-left::before{
+	left: 0;
+}
+
+.to-right::before{
+	right: 0;
+}
+
+.to-center::before{
+	left: 50%;	
+}
+.to-center:hover::before {
+  left: 0;
+}
+
+.btn:hover::before{
+	width: 100%;	
+}
+ 
+/*BOTON CON DEGRADADO*/
+.anim-bg-gradient{
+	background-image: linear-gradient(to right, pink,violet,orange,orangered);
+	background-size: 200% 100%;
+	transition: background-position 1s ease;
+}
+
+.anim-bg-gradient:hover{
+	background-position: 100% 0%;
+}
+
+
+/*PROBANDO ESTILOS CON HERMANOS*/
+/*con + coloca al primer hermano adyacente*/
+.hermano-mas .selected + li{
+	color: red;
+}
+/*con ~ coloca a todos los hermanos por debajo*/
+.hermano-palomita .selected ~ li{
+	color: red;
+}
+
+
+/*MENU DE PESTAÑAS - TABS*/
+.tabs-menu{
+	position: relative;
+	border: thin solid black;
+	border-radius: 10px;
+	width: 80%;
+	margin: 0 auto;
+	padding: 10px;
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	
+}
+
+.tabs-menu input{
+	display: none;
+}
+
+.tabs-menu label {
+	/*background-color: #FF4949;*/
+	/*border: 1px solid black;*/
+	color: #000000;
+	width: calc(100%/4);	
+	padding: 5px 0;
+	z-index: 2;
+	cursor: pointer;
+
+	transition: color .5s ease .1s;
+}
+
+.tab-bg-hover{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	border-radius: 10px;
+	/*calculara el tamaño del total del ancho
+	dividido entre 4 - el 5px que pertenece
+	a los margenes*/
+	width: calc(100%/4 - 5px);
+	margin: 10px;
+	background-color: #000000;	
+	z-index: 1;
+	transition: transform .5s ease-in-out;
+}
+
+
+/*cuando la clase tab-1 este checkeada al hermano que tenga la clase
+tab-bg-hover hara lo que coloquemos*/
+#tab-1:checked ~ .tab-bg-hover{
+	transform: translateX(0);	
+}
+#tab-2:checked ~ .tab-bg-hover{
+	transform: translateX(100%);
+}
+#tab-3:checked ~ .tab-bg-hover{
+	transform: translateX(200%);
+}
+#tab-4:checked ~ .tab-bg-hover{
+	transform: translateX(300%);
+}
+
+/*cuando el input con atributo id este chekeado entonces
+al hermano adyacente se le colocara el color blanco*/
+.tabs-menu input[id]:checked + label{
+	color: white;
+}
+
+/*label[for]{
+	color: red;
+}*/
+
+
+
+
+/*MENU HAMBURGUESA*/
+.off-canvas-btn{
+	position: fixed;
+	width: 3rem;
+	height: 3rem;
+	bottom: 1rem;
+	right: 1rem;
+	
+	cursor: pointer;
+	z-index: 999;
+	opacity: .4;
+	opacity: 0;
+}
+.off-canvas-burger{
+	position: fixed;
+	width: 3rem;
+	height: 3rem;
+	bottom: 1rem;
+	right: 1rem;
+	
+	background-color: black;
+	height: .6rem;
+	border-radius: 3rem;
+	transform: translateY(-1.2rem);
+	transition: background-color .5s ease;
+	z-index: 998;
+}
+
+.off-canvas-burger::before,
+.off-canvas-burger::after{	
+	content: "";
+	display: block;
+	width: 3rem;
+	height: .6rem;
+	border-radius: 3rem;
+	background-color: red;
+	transform-origin: top left;
+	transition: transform .5s ease;
+}
+.off-canvas-burger::before{
+	background-color: black;
+	transform: translateY(-1rem);
+}
+.off-canvas-burger::after{
+	background-color: black;
+	transform: translateY(.3rem);
+}
+
+.off-canvas-btn:checked + .off-canvas-burger{
+	background-color: transparent;
+}
+/*.off-canvas-btn:checked ~ */
+.off-canvas-btn:checked + .off-canvas-burger::before{
+	transform: rotate(45deg) translate(-.5rem,-1rem);
+}
+
+.off-canvas-btn:checked + .off-canvas-burger::after{
+	transform: rotate(-45deg) translate(-.4rem,.1rem);	
+}
+
+
+.off-canvas{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;	
+	left: 0;
+	z-index: 997;
+	background-color: #0009;
+	transform: translateX(-100%);
+	transition: transform .5s ease-out;
+}
+
+.off-canvas-menu-container{
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.off-canvas-link{
+	width: 100%;
+	padding: 1rem;
+	color: white;
+	font-size: 1.5rem;
+	text-decoration: none;
+	border-bottom: thin solid black;
+}
+
+.off-canvas-link:first-child{
+	border-top: thin solid black;
+}
+
+.off-canvas-link:hover{
+	background-color: #7EACFF;
+}
+
+
+.off-canvas-btn:checked ~ .off-canvas{
+	transform: translateX(0%);
+}
+
+
+/**VENTANA MODAL*/
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #00000050;	
+	z-index: 10;
+	/*display: none;*/	
+}
+
+.modal-content{
+	padding: 1rem;
+	width: 60%;
+	height: min-content;	
+	background-color: #ffffff;	
+	border: 1px solid black;	
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+	margin: auto;
+}
+.modal-header{
+	background-color: black;
+	color: white;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0px 30px;
+}
+
+.modal-header a{
+	color: white;
+	text-decoration: none;
+	background-color: red;
+	width: 3rem;
+	height: 3rem;
+	line-height: 3rem;
+	border-radius: 50%;
+	transition: transform .5s ease;
+}
+.modal-header a:hover {
+	background-color: #B52323;
+	transform: scale(1.1);
+}
+
+.modal{
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity .5s ease-in-out;
+}
+
+.modal:target{
+	/*display: block;*/
+	pointer-events: auto;
+	opacity: 1;
+}
+
+
+
+/*STAR WARS*/
+
+.star-wars{
+	background-image: url(images/stars.gif);
+	width: 100%;
+	height: 100vh;
+	color: #ffb13a;
+	overflow: hidden;
+}
+
+.star-wars-container{
+	margin: 0 auto;
+	text-align: justify;
+	width: 70%;	
+	font-size: 1.5vw;
+	animation:introStarWars 10s linear infinite;
+	letter-spacing: .5rem;
+	line-height: 2rem;
+}
+
+.star-wars-container h2,
+.star-wars-container h3{
+	text-align: center;
+	font-size: 3vw;
+}
+
+/*.star-wars-container{
+	transform: perspective(100vh) rotateX(15deg) translateY(100vh);
+}*/
+@keyframes introStarWars {
+	to{
+		transform: perspective(100vh) rotateX(15deg) translateY(-100vh);	
+	}
+	from{
+		transform: perspective(100vh) rotateX(25deg) translateY(100vh);		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitacion Boda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bona+Nova:ital@1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        html {
+            box-sizing: border-box;
+            font-size: 16px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1100px;
+            padding-inline: 2rem;
+            margin: auto;
+        }
+
+
+        .slides {
+            height: 100vh;
+            width: 100%;
+            /* overflow-x: hidden; */
+            /*COMO SERA UN RECORRIDO EN EL EJE VERTICAL LAS DIAPOS */
+            /* overflow-y: scroll;
+	scroll-snap-type:block mandatory; */
+        }
+
+        .slide {
+            width: 100%;
+            height: inherit;
+            /* scroll-snap-align:center; */
+        }
+
+        /****** 1er Slide */
+        .hero {
+            background-image: url('./images/op1.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: grid;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: inherit;
+            background-color: black;
+            opacity: .6;
+        }
+
+        .content {
+            position: relative;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .content__names {
+            font-family: 'Bona Nova', sans-serif;
+            font-size: 3.5rem;
+            padding: 1rem 0;
+        }
+
+        .content__date {
+            font-size: 2rem;
+            letter-spacing: .2rem;
+        }
+
+
+        /****** 2do Slide */
+        .countdown {
+            background-image: url('./images/op3.jpg');
+            background-position: left;
+            background-size: cover;
+            position: relative;
+        }
+
+        .countdown::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: inherit;
+            background-color: black;
+            opacity: .6;
+        }
+
+        .box {
+            width: 100%;
+            background-color: white;
+            font-size: 2rem;
+            padding: 2rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .date {
+            text-align: center;
+            margin-top: 2rem;
+            position: relative;
+            color: white;
+        }
+
+        .date>* {
+            margin-bottom: 1rem;
+        }
+
+        .date__format {
+            font-weight: normal;
+            word-spacing: .2rem;
+            font-size: 2rem;
+        }
+
+        .date__expression {
+            font-size: 2.5rem;
+            letter-spacing: .1rem;
+        }
+
+        .date__counter {
+            display: flex;
+            justify-content: center;
+            gap: .5rem;
+            max-width: 70rem;
+        }
+
+        .date__box {
+            font-size: 1.5rem;
+            border: 1px solid white;
+            padding: 1rem 0;
+            flex-grow: 1;
+            max-width: 120px;
+        }
+
+        .date__button {
+            padding: .8rem 2rem;
+            font-size: 1rem;
+            color: rgb(47, 47, 47);
+            font-weight: bold;
+            border-radius: .5rem;
+        }
+
+        /******  Components */
+        .box--brown {
+            background-color: rgb(177, 156, 117);
+            color: white;
+        }
+
+        .box--brown h3 {
+            font-family: 'Bona Nova', sans-serif;
+            font-weight: normal;
+            font-size: 2rem;
+        }
+
+        .box--brown h2 {
+            font-weight: medium;
+        }
+
+        .box--brown h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+
+        .box--black {
+            background-color: black;
+            color: white;
+            font-size: 1.5rem;
+            padding: .8rem 2rem;
+        }
+
+        /******  Nav */
+        /*Button*/
+        .toggle {
+            cursor: pointer;
+            display: inline-block;
+            background-color: rgb(169 169 169 / 50%);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            position: fixed;
+            z-index: 10;
+            right: 10px;
+            top: 10px;
+        }
+
+        .toggle span {
+            cursor: pointer;
+            position: relative;
+            width: 36px;
+            height: 5px;
+            background-color: #ffffff;
+            display: block;
+            margin: 5px 0;
+            transition: .5s;
+        }
+
+        .toggle span:nth-child(1) {
+            transform-origin: left;
+        }
+
+        .toggle span:nth-child(2) {
+            transform-origin: center;
+        }
+
+        .toggle span:nth-child(3) {
+            transform-origin: left;
+        }
+
+        .toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            left: 5px;
+        }
+
+        .toggle.active span:nth-child(2) {
+            transform: rotate(315deg);
+            right: 0px;
+            top: -2px;
+            left: 0px;
+        }
+
+        .toggle.active span:nth-child(3) {
+            transform: scaleX(0);
+        }
+        /*nav*/
+        .nav{
+            position: fixed;
+            z-index: 9;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgb(80, 80, 80);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;            
+            overflow-y: auto;
+            transform: translateX(-100%);
+            transition: transform ease-in-out .5s;
+        }
+        .nav.active{
+            transform: translateX(0);
+        }
+        .nav a{
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+        }
+        .nav a:hover{
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <!--------  NAV  -------->
+    <a class="toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </a>
+    <nav class="nav">
+        <a href="#">Seccion 1</a>
+        <a href="#">Seccion 2</a>
+        <a href="#">Seccion 3</a>
+        <a href="#">Seccion 4</a>
+        <a href="#">Seccion 5</a>
+    </nav>
+    <!--------  NAV  -------->
+
+    <!--------  Slides  -------->
+    <main class="slides">
+        <!--------  1er Slide  -------->
+        <section class="slide hero">
+            <div class="container">
+                <div class="content" data-aos="zoom-in" data-aos-duration="1000">
+                    <h1 class="content__names">Elias y Lucero</h1>
+                    <h2 class="content__date">18.03.2024</h2>
+                </div>
+            </div>
+        </section>
+        <!--------  2do Slide  -------->
+        <section class="slide countdown">
+            <div class="box">
+                El día más importante de nuestras vidas ha llegado
+            </div>
+            <div class="container">
+                <div class="date" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000">
+                    <h2 class="date__format">Sábado 16 de Marzo 2024</h2>
+                    <h2 class="date__expression">!Nos casamos¡</h2>
+                    <div class="date__counter">
+                        <div class="date__box">
+                            <div class="date__number">143</div>
+                            <div class="date__content">Días</div>
+                        </div>
+                        <div class="date__box">
+                            <div class="date__number">07</div>
+                            <div class="date__content">Hrs</div>
+                        </div>
+                        <div class="date__box">
+                            <div class="date__number">07</div>
+                            <div class="date__content">Hrs</div>
+                        </div>
+                        <div class="date__box">
+                            <div class="date__number">07</div>
+                            <div class="date__content">Hrs</div>
+                        </div>
+                    </div>
+                    <button class="date__button">
+                        Agregar al Calendario
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!--------  3ER Slide  -------->
+        <section class="slide">
+            <div class="box box--brown">
+                <div class="div" data-aos="zoom-in" data-aos-duration="1000">
+                    <h3>¡Es un placer Invitarlos!</h3>
+                    <h2>Familia de Demo</h2>
+                    <h4>Mensaje de Demo</h4>
+                </div>
+            </div>
+            <div class="box box--black">
+                <div data-aos="zoom-in" data-aos-duration="1000">
+                    Invitación válida por 4 PASES
+                </div>
+            </div>
+            <div class="box">
+                <h3>Con la bendición de Dios y de nuestros padres</h3>
+                <div class="parents">
+                    <div class="div">
+                        <h4>Padres de la novia</h4>
+                        <h3>María Gutierrez <br>
+                            Pedro Sánchez</h3>
+                    </div>
+                    <div class="div">
+                        <h4>Padres de la novio</h4>
+                        <h3>Laura Rodríguez <br>
+                            Ricardo Martínez</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <script>
+        const $button = document.querySelector(".toggle");
+        const $toggle = document.querySelector(".toggle, .toggle > *");
+        const $nav = document.querySelector("nav");
+        $toggle.addEventListener("click", (e) => {
+            console.log($toggle);
+            console.log($button);
+            $button.classList.toggle("active");
+            $nav.classList.toggle("active");    
+        })
+    </script>
+</body>
+
+</html>

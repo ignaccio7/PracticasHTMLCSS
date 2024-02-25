@@ -1,0 +1,129 @@
+html{
+	box-sizing: border-box;
+	font-family: monospace;
+	font-size: 16px;
+}
+
+*,
+*::after,
+*::before{
+	box-sizing: inherit;
+}
+
+
+*{
+	margin: 0;
+	padding: 0;
+}
+header {
+	background-color: #000000;
+	color: white;
+	height: 70px;	
+	padding: 0 20px;
+
+}
+.main h1,h2,.modal{
+	padding: 10px;
+}
+
+article{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+article .header-article{
+	background-color: #6FBAFF;
+	width: 100%;
+	padding: 10px;
+}
+
+article:nth-child(even) .header-article{
+	background-color: #FFCC60;
+}
+
+/*HACIENDO LA CABECERA CON FIXED */
+/*se tiene que colocar como padding en el body el tamaño de alto que tenga el header para 
+que se pueda ver el contenido de otra manera se sobrepone
+ya que al poner posicionamiento con fixes perdemos las dimensiones que tenia 
+la etiqueta a un principio*/
+header{
+	top: 0;
+	position: fixed;
+	width: 100%;
+}
+.main{
+	padding-top: 70px;
+}
+/*HACIENDO LA CABECERA CON POSICION STICKY*/
+/*logramos lo mismo sin poner el padding en el body ya que sticky se comporta de manera relativa
+cuando no llegamos al top que coloquemos . Cuando llega se comporta como fixed
+lo que si se debe hacer es que sea el primer hijo directo en el body para que aparezca primero*/
+header{
+	position: sticky;
+	top: 0px;
+	z-index: 2;	
+}
+.main{
+	padding-top: 0px;
+}
+
+
+/*SLIDES CON POSITION STICKY*/
+article .header-article{
+	position: sticky;
+	top: 70px;
+	z-index: 1;
+}
+article{
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+
+/*PARA EL MODAL*/
+.modal-uno{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+	z-index: 3;
+	background-color: #00000050;
+	display: none;
+}
+.modal{
+	width: 500px;
+	height: 300px;	
+	background-color: white;	
+	border: 1px solid black;	
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;	
+	margin: auto;
+}
+.modal .modal-title{
+	background-color: black;
+	color: white;
+	padding: 10px;
+}
+.modal .modal-description{
+	padding: 10px;
+	text-align: justify;
+}
+.modal-footer{
+	background-color: cyan;
+	color: white;
+}
+
+/*PARA QUE APAREZCA*/
+.modal-uno:target{
+	display: block;
+}
+
+
+

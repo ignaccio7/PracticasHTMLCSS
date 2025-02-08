@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login</title>
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    html {
+      box-sizing: inherit;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 1rem;
+      background-color: rgb(33, 62, 91);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+    }
+
+    .container-forms {
+      width: 95%;
+      max-width: 500px;
+      margin-inline: auto;
+      overflow: hidden;
+    }
+
+    .forms {
+      width: 200%;
+      display: flex;
+      transition: transform 500ms ease-in-out, height 500ms ease;
+    }
+
+    .form-login,
+    .form-register {
+      width: 100%;
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+      border: 1px solid #ffffff80;
+      border-radius: 1rem;
+      justify-content: center;
+    }
+
+    .form__credentials {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form__credentials label {
+      display: flex;
+      padding: 8px;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      border-radius: 1rem;
+      border: 1px solid #ffffff80;
+      width: 90%;
+    }
+
+    .form__credentials input {
+      border: none;
+      outline: none;
+      background-color: transparent;
+      flex-grow: 1;
+    }
+
+    .form__credentials input::placeholder {
+      color: white;
+    }
+
+    .form__actions>div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: .8rem;
+    }
+
+    .form__actions label {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .form__actions button {
+      width: 90%;
+      padding: .5rem;
+      border: none;
+      border-radius: 1rem;
+      font-weight: bold;
+      transition: background-color ease .5s, color ease .5s;
+    }
+
+    .form__actions button:hover {
+      background-color: black;
+      color: white;
+    }
+
+    footer {
+      font-size: .8rem;
+    }
+
+    footer label {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .form-register .form__credentials {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .form-register .form__credentials label {
+      width: auto;
+      flex-grow: 1;
+      padding: 5px;
+    }
+
+    #change-form {
+      display: none;
+    }
+
+    #change-form:checked~.forms {
+      transform: translateX(-50%);
+      height: 450px;
+    }
+
+    .forms {
+      height: 300px;
+    }
+
+    @media (max-width: 480px) {
+      #change-form:checked~.forms {
+        transform: translateX(-50%);
+        height: 600px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Algun nav entra aqui</h1>
+  <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, nihil nisi adipisci dignissimos at accusantium eius saepe doloremque ipsam deserunt animi totam harum dolor, temporibus magni eos, quod nam quo?
+  Totam repudiandae, ipsam voluptate porro reiciendis itaque repellat dolore, quos fugiat sint, quis cupiditate veniam ipsum adipisci. Debitis alias animi voluptas laboriosam hic recusandae magni illo esse, deleniti eos distinctio!
+  Laudantium necessitatibus unde nam nulla soluta! Vel ea tenetur reiciendis dolorem dolore vero at placeat maiores explicabo amet nam illum, eos distinctio provident esse veniam similique, labore quaerat vitae adipisci!
+  Necessitatibus ad, aspernatur aut repellat consectetur perspiciatis sunt mollitia facere pariatur distinctio commodi porro quo vitae laborum? Voluptas a, praesentium voluptates nulla beatae ad, dolore unde fugit fugiat maxime provident?
+  Velit, optio voluptate! Eius, laboriosam incidunt. Sequi fugiat voluptatem quidem autem aliquid, itaque dolorem quaerat laborum consequatur nulla rerum voluptates tempore, aliquam iure sit sunt rem suscipit, ex ea temporibus?</p>
+  <div class="container-forms">
+    <input type="checkbox" name="change-form" id="change-form">
+    <div class="forms">
+      <form class="form-login">
+        <h1 class="form__title">Login 1</h1>
+        <div class="form__credentials">
+          <label>
+            <img src="./assets/icons/user.svg" alt="👤" width="20px" height="20px">
+            <input type="text" placeholder="Username" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+        </div>
+        <div class="form__actions">
+          <div>
+            <label>
+              <input type="checkbox" />
+              Remember me
+            </label>
+            <a href="#" class="action__forgot"> Forgot password? </a>
+          </div>
+          <button type="submit">
+            Login
+          </button>
+        </div>
+        <footer>
+          Don`t have an account? <label for="change-form">Register</label>
+        </footer>
+      </form>
+
+      <form class="form-register">
+        <h1 class="form__title">Login 2</h1>
+        <div class="form__credentials">
+          <label>
+            <img src="./assets/icons/user.svg" alt="👤" width="20px" height="20px">
+            <input type="text" placeholder="Username" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/user.svg" alt="👤" width="20px" height="20px">
+            <input type="text" placeholder="Username" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+          <label>
+            <img src="./assets/icons/lock.svg" alt="🧷" width="20px" height="20px">
+            <input type="password" placeholder="Password" />
+          </label>
+        </div>
+        <div class="form__actions">
+          <button type="submit">
+            Login
+          </button>
+        </div>
+        <footer>
+          Volver a <label for="change-form">Login</label>
+        </footer>
+      </form>
+    </div>
+  </div>
+  <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto nihil vitae corporis voluptatibus omnis ipsa quia ullam? Corporis neque repellat laborum sequi quos voluptatem quisquam. Labore et dolores cumque excepturi.</p>
+</body>
+
+</html>

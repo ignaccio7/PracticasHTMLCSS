@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Block</title>
+    <style>
+        .cards{
+            width: 90%;
+            margin-inline: auto;            
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+        /* .card{
+            width: 10rem;
+            height: 10rem;
+            padding: 1rem;
+            background-color: lightblue;
+            transition: opacity 1s ease;
+        }
+        .card.hidden{
+            opacity: 0;       
+            display: none;     
+        } no funca */
+        .card{
+            width: 10rem;
+            height: 10rem;
+            padding: 1rem;
+            background-color: lightblue;            
+        }
+        .card.hidden{
+            animation: fade-out 1s ease forwards;
+        }
+        
+        @keyframes fade-out {
+            to{
+                opacity: 0;
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Display Block -  Animation</h1>
+    <div class="cards">
+        <div class="card">
+            <h3>Item1</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item2</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item3</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item4</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item5</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item6</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item7</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item8</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item9</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+        <div class="card">
+            <h3>Item10</h3>
+            <p>Hola</p>
+            <a href="#">X</a>
+        </div>
+    </div>
+
+    <script>
+        const d = document;
+
+        d.addEventListener("click",(e)=>{
+            if (e.target.matches("a")) {
+                e.preventDefault();
+                console.log(e.target.parentNode);
+                e.target.parentNode.classList.add("hidden");
+            }
+        });
+
+
+    </script>
+</body>
+</html>
